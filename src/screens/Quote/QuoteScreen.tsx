@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks';
 import useRandomQuote from 'GoalMap/src/hooks/useRandomQuote';
 
-const Quotes = () => {
+const QuoteScreen = () => {
   const { t } = useTranslation(['quotes']);
   const { Fonts } = useTheme();
 
@@ -17,4 +17,4 @@ const Quotes = () => {
   );
 };
 
-export default Quotes;
+export default QuoteScreen;

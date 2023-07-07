@@ -1,5 +1,5 @@
 import React from 'react';
-import { Main, Quotes } from '../screens';
+import Tabs from './Tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -8,8 +8,7 @@ const Stack = createStackNavigator();
 const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Main} />
-      <Stack.Screen name="Quotes" component={Quotes} />
+      <Stack.Screen name="Tabs" component={Tabs} />
     </Stack.Navigator>
   );
 };

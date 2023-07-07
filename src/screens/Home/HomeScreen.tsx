@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks';
 import { changeTheme, ThemeState } from '../../store/theme';
 import i18next from 'i18next';
 
-const Main = ({ navigation }) => {
+const HomeScreen = () => {
   const { t } = useTranslation(['welcome']);
   const {
     Common,
@@ -64,15 +64,6 @@ const Main = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[Common.button.circle, Gutters.regularBMargin]}
-          onPress={() => navigation.navigate('Quotes')}
-        >
-          <Image
-            source={Images.icons.send}
-            style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[Common.button.circle, Gutters.regularBMargin]}
           onPress={() =>
             onChangeLanguage(i18next.language === 'pl' ? 'en' : 'pl')
           }
@@ -87,4 +78,4 @@ const Main = ({ navigation }) => {
   );
 };
 
-export default Main;
+export default HomeScreen;

@@ -1,4 +1,4 @@
 {
   "title": "Witaj w",
-  "subtitle": "$t(common:appName.full)",
+  "subtitle": "$t(common:appName.full)"
 }
