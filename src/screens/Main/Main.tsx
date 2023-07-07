@@ -5,10 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks';
 import { changeTheme, ThemeState } from '../../store/theme';
 import i18next from 'i18next';
-import useRandomQuote from 'GoalMap/src/hooks/useRandomQuote';
 
-const Example = () => {
-  const { t } = useTranslation(['example', 'welcome']);
+const Main = ({ navigation }) => {
+  const { t } = useTranslation(['welcome']);
   const {
     Common,
     Fonts,
@@ -38,8 +37,11 @@ const Example = () => {
       ]}
     >
       <View>
-        <Text style={[Fonts.textSmall, Fonts.textLight]}>
-          {t(useRandomQuote())}
+        <Text style={[Fonts.textLarge, Fonts.textLight]}>
+          {t('welcome:title')}
+        </Text>
+        <Text style={[Fonts.textRegular, Fonts.textLight]}>
+          {t('welcome:subtitle')}
         </Text>
       </View>
 
@@ -60,7 +62,15 @@ const Example = () => {
             style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
           />
         </TouchableOpacity>
-
+        <TouchableOpacity
+          style={[Common.button.circle, Gutters.regularBMargin]}
+          onPress={() => navigation.navigate('Quotes')}
+        >
+          <Image
+            source={Images.icons.send}
+            style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
+          />
+        </TouchableOpacity>
         <TouchableOpacity
           style={[Common.button.circle, Gutters.regularBMargin]}
           onPress={() =>
@@ -77,4 +87,4 @@ const Example = () => {
   );
 };
 
-export default Example;
+export default Main;
