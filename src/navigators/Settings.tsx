@@ -27,7 +27,7 @@ const Settings = () => {
   };
   const toggleLanguage = () => {
     setLanguage(language === 'pl' ? 'en' : 'pl');
-    onChangeLanguage(language);
+    onChangeLanguage(language === 'pl' ? 'en' : 'pl');
   };
   const onChangeLanguage = (lang: string) => {
     i18next.changeLanguage(lang);
