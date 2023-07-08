@@ -10,14 +10,13 @@ import { useTheme } from '../hooks';
 import MainNavigator from './Main';
 import { useFlipper } from '@react-navigation/devtools';
 import { ApplicationStackParamList } from '../../@types/navigation';
-
+import Settings from './Settings';
 const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
 const ApplicationNavigator = () => {
   const { Layout, darkMode, NavigationTheme } = useTheme();
   const { colors } = NavigationTheme;
-
   const navigationRef = useNavigationContainerRef();
 
   useFlipper(navigationRef);
@@ -30,6 +29,7 @@ const ApplicationNavigator = () => {
           <Stack.Screen name="Startup" component={Startup} />
           <Stack.Screen name="Main" component={MainNavigator} />
         </Stack.Navigator>
+        <Settings />
       </NavigationContainer>
     </SafeAreaView>
   );

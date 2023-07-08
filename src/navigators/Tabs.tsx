@@ -3,12 +3,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import QuoteScreen from '../screens/Quote/QuoteScreen';
-import HomeScreen from '../screens/Home/HomeScreen';
+import GoalsScreen from '../screens/Goals/GoalsScreen';
 import ImageScreen from '../screens/Image/ImageScreen';
+import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const { t } = useTranslation(['common']);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -16,16 +18,16 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name={t('common:tabs.goals')}
+        component={GoalsScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Icon name="home" size={size} color={color} />
+            <Icon name="checkmark-circle" size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
-        name="Quotes"
+        name={t('common:tabs.quotes')}
         component={QuoteScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -34,7 +36,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Images"
+        name={t('common:tabs.images')}
         component={ImageScreen}
         options={{
           tabBarIcon: ({ size, color }) => (

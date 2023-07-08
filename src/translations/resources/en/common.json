@@ -2,5 +2,10 @@
   "appName": {
     "full": "React Native GoalMap",
     "initials": "RNB"
+  },
+  "tabs": {
+    "goals": "Goals",
+    "quotes": "Quotes",
+    "images": "Images"
   }
 }
