@@ -4,7 +4,10 @@ import { Button, Dialog, Input } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
 import { addGoal } from 'GoalMap/src/store/goals';
+import { useTheme } from '../../hooks';
 const AddGoal = () => {
+  const { Common, Fonts } = useTheme();
+  const { button } = Common;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [visible, setVisible] = useState(false);
@@ -18,11 +21,15 @@ const AddGoal = () => {
   };
   return (
     <View>
-      <Button icon={<Icon name="add" />} onPress={toggleDialog} />
+      <Button
+        icon={<Icon name="add" color={Fonts.titleLarge.color} size={20} />}
+        buttonStyle={button.circle}
+        onPress={toggleDialog}
+      />
       <Dialog
         isVisible={visible}
         onBackdropPress={toggleDialog}
-        overlayStyle={style.dialog}
+        overlayStyle={Common.dialog}
       >
         <Input placeholder="Goal Title" value={title} onChangeText={setTitle} />
         <Input
@@ -30,18 +37,27 @@ const AddGoal = () => {
           value={description}
           onChangeText={setDescription}
         />
-        <Button icon={<Icon name="close" />} onPress={toggleDialog} />
-        <Button icon={<Icon name="checkmark" onPress={sendGoal} />} />
+        <View style={style.buttonContainer}>
+          <Button
+            icon={<Icon name="close" />}
+            onPress={toggleDialog}
+            buttonStyle={button.base}
+          />
+          <Button
+            icon={<Icon name="checkmark" onPress={sendGoal} />}
+            buttonStyle={button.outline}
+          />
+        </View>
       </Dialog>
     </View>
   );
 };
 
 const style = StyleSheet.create({
-  dialog: {
+  buttonContainer: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 200,
   },
 });
 

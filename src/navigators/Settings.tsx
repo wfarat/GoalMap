@@ -6,9 +6,11 @@ import { useDispatch } from 'react-redux';
 import { useTheme } from '../hooks';
 import { changeTheme, ThemeState } from '../store/theme';
 import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 const Settings = () => {
-  const { NavigationTheme, Fonts, darkMode: isDark } = useTheme();
-  const { colors } = NavigationTheme;
+  const { t } = useTranslation(['common']);
+  const { Common, Fonts, darkMode: isDark } = useTheme();
+  const { button } = Common;
   const [dark, setDark] = useState(isDark);
   const [visible, setVisible] = useState(false);
   const [language, setLanguage] = useState(i18next.language);
@@ -42,20 +44,20 @@ const Settings = () => {
             color={Fonts.titleLarge.color}
           />
         }
-        buttonStyle={{
-          backgroundColor: colors.card,
-          borderRadius: 3,
-        }}
+        buttonStyle={button.circle}
         onPress={toggleDialog}
       />
       <Dialog
         isVisible={visible}
         onBackdropPress={toggleDialog}
-        overlayStyle={style.dialog}
+        overlayStyle={Common.dialog}
       >
-        <Dialog.Title title="Settings" />
+        <Dialog.Title
+          title={t('common:settings.title')}
+          titleStyle={Fonts.textRegular}
+        />
         <View style={style.switchContainer}>
-          <Text>Dark Mode</Text>
+          <Text style={Fonts.textLight}>{t('common:settings.dark')}</Text>
           <Switch
             onChange={toggleDarkMode}
             value={dark}
@@ -64,7 +66,9 @@ const Settings = () => {
           />
         </View>
         <View style={style.switchContainer}>
-          <Text>Language: {language}</Text>
+          <Text style={Fonts.textLight}>
+            {t('common:settings.lang')} {language}
+          </Text>
           <Switch
             onChange={toggleLanguage}
             value={language === 'pl'}
@@ -78,15 +82,10 @@ const Settings = () => {
 
 const style = StyleSheet.create({
   container: {
-    width: 40,
+    width: 70,
     position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-  dialog: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 200,
+    top: 5,
+    right: 5,
   },
   switchContainer: {
     flexDirection: 'row',

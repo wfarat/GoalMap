@@ -24,6 +24,12 @@ export default function <C>({ Colors, ...args }: CommonParams<C>) {
         borderRadius: 10,
         paddingStart: 20,
       },
+      dialog: {
+        backgroundColor: args.NavigationColors.card,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 200,
+      },
     }),
   };
 }

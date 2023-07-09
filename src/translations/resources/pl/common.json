@@ -7,5 +7,10 @@
     "goals": "Cele",
     "quotes": "Cytaty",
     "images": "Obrazki"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "dark": "Tryb Nocny",
+    "lang": "Język"
   }
 }

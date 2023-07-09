@@ -7,5 +7,10 @@
     "goals": "Goals",
     "quotes": "Quotes",
     "images": "Images"
+  },
+  "settings": {
+    "title": "Settigns",
+    "dark": "Dark Mode",
+    "lang": "Language"
   }
 }
