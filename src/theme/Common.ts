@@ -5,11 +5,13 @@
  */
 import { StyleSheet } from 'react-native';
 import buttonStyles from './components/Buttons';
+import dialogStyles from './components/Dialogs';
 import { CommonParams } from '../../@types/theme';
 
 export default function <C>({ Colors, ...args }: CommonParams<C>) {
   return {
     button: buttonStyles({ Colors, ...args }),
+    dialog: dialogStyles({ Colors, ...args }),
     ...StyleSheet.create({
       backgroundPrimary: {
         backgroundColor: Colors.primary,
@@ -24,11 +26,12 @@ export default function <C>({ Colors, ...args }: CommonParams<C>) {
         borderRadius: 10,
         paddingStart: 20,
       },
-      dialog: {
-        backgroundColor: args.NavigationColors.card,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 200,
+      multilineInput: {
+        backgroundColor: Colors.inputBackground,
+        color: Colors.textGray400,
+        height: 110,
+        borderRadius: 10,
+        paddingStart: 20,
       },
     }),
   };

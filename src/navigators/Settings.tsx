@@ -50,7 +50,7 @@ const Settings = () => {
       <Dialog
         isVisible={visible}
         onBackdropPress={toggleDialog}
-        overlayStyle={Common.dialog}
+        overlayStyle={Common.dialog.base}
       >
         <Dialog.Title
           title={t('common:settings.title')}

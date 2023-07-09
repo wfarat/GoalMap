@@ -5,7 +5,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
 import { addGoal } from 'GoalMap/src/store/goals';
 import { useTheme } from '../../hooks';
+import { useTranslation } from 'react-i18next';
 const AddGoal = () => {
+  const { t } = useTranslation(['goals']);
   const { Common, Fonts } = useTheme();
   const { button } = Common;
   const [title, setTitle] = useState('');
@@ -29,13 +31,22 @@ const AddGoal = () => {
       <Dialog
         isVisible={visible}
         onBackdropPress={toggleDialog}
-        overlayStyle={Common.dialog}
+        overlayStyle={Common.dialog.base}
       >
-        <Input placeholder="Goal Title" value={title} onChangeText={setTitle} />
         <Input
-          placeholder="Goal Description"
+          placeholder={t('goals:title')}
+          value={title}
+          onChangeText={setTitle}
+          inputStyle={Common.textInput}
+        />
+        <Input
+          placeholder={t('goals:description')}
           value={description}
           onChangeText={setDescription}
+          inputStyle={Common.multilineInput}
+          multiline
+          numberOfLines={4}
+          maxLength={100}
         />
         <View style={style.buttonContainer}>
           <Button
