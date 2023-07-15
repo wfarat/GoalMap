@@ -19,7 +19,7 @@ export const selectGoals = (state: { goals: Goals }) => state.goals.goals;
 export default slice.reducer;
 
 type Step = { id: number; substeps: Step[]; name: string; completed: boolean };
-type Goal = {
+export type Goal = {
   id: number;
   steps: Step[];
   title: string | undefined;
