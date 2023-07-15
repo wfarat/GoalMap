@@ -5,6 +5,8 @@ import { useTheme } from '../../hooks';
 import AddGoal from 'GoalMap/src/components/AddGoal/AddGoal';
 import { selectGoals } from 'GoalMap/src/store/goals';
 import { useSelector } from 'react-redux';
+import { Card, Button, Icon } from '@rneui/themed';
+
 const GoalsScreen = () => {
   const { t } = useTranslation(['welcome']);
   const { Fonts, Layout } = useTheme();
@@ -27,15 +29,19 @@ const GoalsScreen = () => {
           {t('welcome:subtitle')}
         </Text>
       </View>
-      {goals.length > 0 &&
-        goals.map(goal => {
-          return (
-            <View key={goal.id}>
-              <Text>{goal.title}</Text>
-              <Text>{goal.description}</Text>
-            </View>
-          );
-        })}
+      <View>
+        {goals.length > 0 &&
+          goals.map(goal => {
+            return (
+              <Card key={goal.id}>
+                <Card.Title>{goal.title}</Card.Title>
+                <Card.Divider />
+                <Text>{goal.description}</Text>
+                <Button icon={<Icon name="code" />} />
+              </Card>
+            );
+          })}
+      </View>
       <AddGoal />
     </ScrollView>
   );
