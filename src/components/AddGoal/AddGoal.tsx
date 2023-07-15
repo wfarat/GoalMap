@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Button, Dialog, Input } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
@@ -21,6 +21,7 @@ const AddGoal = () => {
     dispatch(addGoal({ title, description }));
     toggleDialog();
   };
+
   return (
     <View>
       <Button
@@ -48,28 +49,21 @@ const AddGoal = () => {
           numberOfLines={4}
           maxLength={100}
         />
-        <View style={style.buttonContainer}>
+        <View style={Common.buttonContainer}>
           <Button
             icon={<Icon name="close" />}
             onPress={toggleDialog}
             buttonStyle={button.base}
           />
           <Button
-            icon={<Icon name="checkmark" onPress={sendGoal} />}
+            icon={<Icon name="checkmark" />}
             buttonStyle={button.outline}
+            onPress={sendGoal}
           />
         </View>
       </Dialog>
     </View>
   );
 };
-
-const style = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default AddGoal;

@@ -8,10 +8,13 @@ const slice = createSlice({
       state.lastId++;
       state.goals.push({ id: state.lastId, steps: [], title, description });
     },
+    deleteGoal: (state, { payload: { id } }: GoalPayload) => {
+      state.goals = state.goals.filter(goal => goal.id !== id);
+    },
   },
 });
 
-export const { addGoal } = slice.actions;
+export const { addGoal, deleteGoal } = slice.actions;
 export const selectGoals = (state: { goals: Goals }) => state.goals.goals;
 export default slice.reducer;
 

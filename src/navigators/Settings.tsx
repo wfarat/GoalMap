@@ -56,7 +56,7 @@ const Settings = () => {
           title={t('common:settings.title')}
           titleStyle={Fonts.textRegular}
         />
-        <View style={style.switchContainer}>
+        <View style={Common.buttonContainer}>
           <Text style={Fonts.textLight}>{t('common:settings.dark')}</Text>
           <Switch
             onChange={toggleDarkMode}
@@ -65,7 +65,7 @@ const Settings = () => {
             trackColor={{ false: '#767577', true: '#81b0ff' }}
           />
         </View>
-        <View style={style.switchContainer}>
+        <View style={Common.buttonContainer}>
           <Text style={Fonts.textLight}>
             {t('common:settings.lang')} {language}
           </Text>
@@ -86,11 +86,6 @@ const style = StyleSheet.create({
     position: 'absolute',
     top: 5,
     right: 5,
-  },
-  switchContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   switch: {
     marginLeft: 10,
