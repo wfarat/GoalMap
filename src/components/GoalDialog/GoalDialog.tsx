@@ -2,37 +2,46 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Button, Dialog, Input } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useDispatch } from 'react-redux';
-import { addGoal } from 'GoalMap/src/store/goals';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addGoal,
+  editGoal,
+  selectDialog,
+  toggleDialog,
+} from 'GoalMap/src/store/goals';
 import { useTheme } from '../../hooks';
 import { useTranslation } from 'react-i18next';
-const AddGoal = () => {
+
+const GoalDialog = () => {
   const { t } = useTranslation(['goals']);
+  const { open, id } = useSelector(selectDialog);
   const { Common, Fonts } = useTheme();
-  const { button } = Common;
+  const { button, dialog } = Common;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const toggleDialog = () => {
-    setVisible(!visible);
-  };
   const sendGoal = () => {
-    dispatch(addGoal({ title, description }));
-    toggleDialog();
+    if (!id) {
+      dispatch(addGoal({ title, description }));
+    } else {
+      dispatch(editGoal({ id: id, title, description }));
+    }
+    dispatch(toggleDialog);
   };
-
+  const handleToggle = () => {
+    dispatch(toggleDialog);
+  };
   return (
     <View>
       <Button
         icon={<Icon name="add" color={Fonts.titleLarge.color} size={20} />}
         buttonStyle={button.circle}
-        onPress={toggleDialog}
+        onPress={handleToggle}
       />
       <Dialog
-        isVisible={visible}
-        onBackdropPress={toggleDialog}
-        overlayStyle={Common.dialog.base}
+        isVisible={open}
+        onBackdropPress={handleToggle}
+        overlayStyle={dialog.base}
       >
         <Input
           placeholder={t('goals:title')}
@@ -52,7 +61,7 @@ const AddGoal = () => {
         <View style={Common.buttonContainer}>
           <Button
             icon={<Icon name="close" />}
-            onPress={toggleDialog}
+            onPress={handleToggle}
             buttonStyle={button.base}
           />
           <Button
@@ -66,4 +75,4 @@ const AddGoal = () => {
   );
 };
 
-export default AddGoal;
+export default GoalDialog;

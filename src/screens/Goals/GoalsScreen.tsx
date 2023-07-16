@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks';
-import AddGoal from 'GoalMap/src/components/AddGoal/AddGoal';
 import { selectGoals } from 'GoalMap/src/store/goals';
 import { useSelector } from 'react-redux';
-import GoalCard from 'GoalMap/src/components/Goal/Goal';
+import GoalCard from 'GoalMap/src/components/GoalCard/GoalCard';
+import GoalDialog from 'GoalMap/src/components/GoalDialog/GoalDialog';
 
 const GoalsScreen = () => {
   const { t } = useTranslation(['welcome']);
@@ -42,7 +42,7 @@ const GoalsScreen = () => {
             );
           })}
       </ScrollView>
-      <AddGoal />
+      <GoalDialog />
     </ScrollView>
   );
 };

@@ -6,12 +6,14 @@
 import { StyleSheet } from 'react-native';
 import buttonStyles from './components/Buttons';
 import dialogStyles from './components/Dialogs';
+import cardStyles from './components/Cards';
 import { CommonParams } from '../../@types/theme';
 
 export default function <C>({ Colors, ...args }: CommonParams<C>) {
   return {
     button: buttonStyles({ Colors, ...args }),
     dialog: dialogStyles({ Colors, ...args }),
+    card: cardStyles({ Colors, ...args }),
     ...StyleSheet.create({
       backgroundPrimary: {
         backgroundColor: Colors.primary,
