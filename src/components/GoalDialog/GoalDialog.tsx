@@ -26,10 +26,10 @@ const GoalDialog = () => {
     } else {
       dispatch(editGoal({ id: id, title, description }));
     }
-    dispatch(toggleDialog);
+    dispatch(toggleDialog({}));
   };
   const handleToggle = () => {
-    dispatch(toggleDialog);
+    dispatch(toggleDialog({}));
   };
   return (
     <View>
