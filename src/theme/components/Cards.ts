@@ -10,8 +10,11 @@ export default function <C>({
     ...Layout.center,
     ...Gutters.regularHPadding,
     backgroundColor: NavigationColors.card,
+    borderWidth: 1,
+    padding: 15,
+    margin: 15,
+    borderColor: 'white',
   };
-
   return StyleSheet.create({
     base,
   });

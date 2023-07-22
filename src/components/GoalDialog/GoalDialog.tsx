@@ -8,6 +8,7 @@ import {
   editGoal,
   selectDialog,
   toggleDialog,
+  deleteGoal,
 } from 'GoalMap/src/store/goals';
 import { useTheme } from '../../hooks';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 const GoalDialog = () => {
   const { t } = useTranslation(['goals']);
   const { open, id } = useSelector(selectDialog);
-  const { Common, Fonts } = useTheme();
+  const { Common, Fonts, Layout } = useTheme();
   const { button, dialog } = Common;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -24,15 +25,19 @@ const GoalDialog = () => {
     if (!id) {
       dispatch(addGoal({ title, description }));
     } else {
-      dispatch(editGoal({ id: id, title, description }));
+      dispatch(editGoal({ id, title, description }));
     }
     dispatch(toggleDialog({}));
   };
   const handleToggle = () => {
     dispatch(toggleDialog({}));
   };
+  const handleDelete = () => {
+    dispatch(deleteGoal({ id }));
+    dispatch(toggleDialog({}));
+  };
   return (
-    <View>
+    <View style={Layout.center}>
       <Button
         icon={<Icon name="add" color={Fonts.titleLarge.color} size={20} />}
         buttonStyle={button.circle}
@@ -58,12 +63,19 @@ const GoalDialog = () => {
           numberOfLines={4}
           maxLength={100}
         />
-        <View style={Common.buttonContainer}>
+        <View style={Layout.rowHCenter}>
           <Button
             icon={<Icon name="close" />}
             onPress={handleToggle}
             buttonStyle={button.base}
           />
+          {id && (
+            <Button
+              icon={<Icon name="trash-bin" size={20} />}
+              buttonStyle={button.base}
+              onPress={handleDelete}
+            />
+          )}
           <Button
             icon={<Icon name="checkmark" />}
             buttonStyle={button.outline}

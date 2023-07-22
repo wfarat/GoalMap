@@ -14,8 +14,8 @@ export default function <C>({ Colors, Gutters, Layout }: CommonParams<C>) {
   };
   const circle = {
     ...Layout.center,
-    height: 70,
-    width: 70,
+    height: 40,
+    width: 40,
     borderRadius: 35,
     backgroundColor: Colors.circleButtonBackground,
     color: Colors.circleButtonColor,

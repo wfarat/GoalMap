@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Dialog, Switch } from '@rneui/themed';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
 import { useTheme } from '../hooks';
 import { changeTheme, ThemeState } from '../store/theme';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { SettingsIcon } from '../components';
+
 const Settings = () => {
   const { t } = useTranslation(['common']);
-  const { Common, Fonts, darkMode: isDark } = useTheme();
+  const { Common, Fonts, darkMode: isDark, Layout } = useTheme();
   const { button } = Common;
   const [dark, setDark] = useState(isDark);
   const [visible, setVisible] = useState(false);
@@ -35,15 +36,9 @@ const Settings = () => {
     i18next.changeLanguage(lang);
   };
   return (
-    <View style={style.container}>
+    <View style={Common.settings.top}>
       <Button
-        icon={
-          <Icon
-            name="ellipsis-horizontal"
-            size={20}
-            color={Fonts.titleLarge.color}
-          />
-        }
+        icon={SettingsIcon}
         buttonStyle={button.circle}
         onPress={toggleDialog}
       />
@@ -56,16 +51,17 @@ const Settings = () => {
           title={t('common:settings.title')}
           titleStyle={Fonts.textRegular}
         />
-        <View style={Common.buttonContainer}>
+        <View style={Layout.rowHCenter}>
           <Text style={Fonts.textLight}>{t('common:settings.dark')}</Text>
           <Switch
             onChange={toggleDarkMode}
             value={dark}
             thumbColor={dark ? '#000000' : '#FFFFFF'}
             trackColor={{ false: '#767577', true: '#81b0ff' }}
+            style={style.switch}
           />
         </View>
-        <View style={Common.buttonContainer}>
+        <View style={Layout.rowHCenter}>
           <Text style={Fonts.textLight}>
             {t('common:settings.lang')} {language}
           </Text>
@@ -73,6 +69,7 @@ const Settings = () => {
             onChange={toggleLanguage}
             value={language === 'pl'}
             trackColor={{ false: '#767577', true: '#81b0ff' }}
+            style={style.switch}
           />
         </View>
       </Dialog>
@@ -81,12 +78,6 @@ const Settings = () => {
 };
 
 const style = StyleSheet.create({
-  container: {
-    width: 70,
-    position: 'absolute',
-    top: 5,
-    right: 5,
-  },
   switch: {
     marginLeft: 10,
   },

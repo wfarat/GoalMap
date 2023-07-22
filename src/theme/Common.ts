@@ -4,9 +4,12 @@
  * Use it to define generic component styles (e.g. the default text styles, default button styles...).
  */
 import { StyleSheet } from 'react-native';
-import buttonStyles from './components/Buttons';
-import dialogStyles from './components/Dialogs';
-import cardStyles from './components/Cards';
+import {
+  buttonStyles,
+  cardStyles,
+  dialogStyles,
+  settingStyles,
+} from './components';
 import { CommonParams } from '../../@types/theme';
 
 export default function <C>({ Colors, ...args }: CommonParams<C>) {
@@ -14,6 +17,7 @@ export default function <C>({ Colors, ...args }: CommonParams<C>) {
     button: buttonStyles({ Colors, ...args }),
     dialog: dialogStyles({ Colors, ...args }),
     card: cardStyles({ Colors, ...args }),
+    settings: settingStyles({ Colors, ...args }),
     ...StyleSheet.create({
       backgroundPrimary: {
         backgroundColor: Colors.primary,
@@ -34,11 +38,6 @@ export default function <C>({ Colors, ...args }: CommonParams<C>) {
         height: 110,
         borderRadius: 10,
         paddingStart: 20,
-      },
-      buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
       },
     }),
   };
