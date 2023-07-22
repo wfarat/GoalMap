@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { useTheme } from 'GoalMap/src/hooks';
 import { toggleDialog } from 'GoalMap/src/store/goals';
 import type { Goal } from '../../store/goals';
-import { SettingsIcon } from '../index';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const GoalCard = (props: Partial<Goal>) => {
   const dispatch = useDispatch();
-  const { Common } = useTheme();
+  const { Common, Fonts } = useTheme();
   const { card, button, settings } = Common;
 
   const handleEdit = (id: number | undefined) => {
@@ -19,7 +19,13 @@ const GoalCard = (props: Partial<Goal>) => {
     <View style={card.base}>
       <View style={settings.top}>
         <Button
-          icon={SettingsIcon}
+          icon={
+            <Icon
+              name="ellipsis-horizontal"
+              size={20}
+              color={Fonts.titleLarge.color}
+            />
+          }
           onPress={() => handleEdit(props.id)}
           buttonStyle={button.circle}
         />

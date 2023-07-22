@@ -4,9 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useTheme } from '../hooks';
 import { changeTheme, ThemeState } from '../store/theme';
+import Icon from 'react-native-vector-icons/Ionicons';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { SettingsIcon } from '../components';
 
 const Settings = () => {
   const { t } = useTranslation(['common']);
@@ -38,7 +38,13 @@ const Settings = () => {
   return (
     <View style={Common.settings.top}>
       <Button
-        icon={SettingsIcon}
+        icon={
+          <Icon
+            name="ellipsis-horizontal"
+            size={20}
+            color={Fonts.titleLarge.color}
+          />
+        }
         buttonStyle={button.circle}
         onPress={toggleDialog}
       />

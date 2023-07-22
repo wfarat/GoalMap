@@ -8,11 +8,10 @@ export default function <C>({
 }: CommonParams<C>) {
   const base = {
     ...Layout.center,
-    ...Gutters.regularHPadding,
+    ...Gutters.regularPadding,
+    ...Gutters.tinyMargin,
     backgroundColor: NavigationColors.card,
     borderWidth: 1,
-    padding: 15,
-    margin: 15,
     borderColor: 'white',
   };
   return StyleSheet.create({

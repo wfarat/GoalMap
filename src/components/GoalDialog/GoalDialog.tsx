@@ -65,19 +65,29 @@ const GoalDialog = () => {
         />
         <View style={Layout.rowHCenter}>
           <Button
-            icon={<Icon name="close" />}
+            icon={
+              <Icon name="close" color={Fonts.titleLarge.color} size={20} />
+            }
             onPress={handleToggle}
             buttonStyle={button.base}
           />
           {id && (
             <Button
-              icon={<Icon name="trash-bin" size={20} />}
+              icon={
+                <Icon
+                  name="trash-bin"
+                  color={Fonts.titleLarge.color}
+                  size={20}
+                />
+              }
               buttonStyle={button.base}
               onPress={handleDelete}
             />
           )}
           <Button
-            icon={<Icon name="checkmark" />}
+            icon={
+              <Icon name="checkmark" color={Fonts.titleLarge.color} size={20} />
+            }
             buttonStyle={button.outline}
             onPress={sendGoal}
           />
