@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import QuoteScreen from '../screens/Quote/QuoteScreen';
-import GoalsScreen from '../screens/Goals/GoalsScreen';
 import ImageScreen from '../screens/Image/ImageScreen';
 import { useTranslation } from 'react-i18next';
+import GoalsStack from './Goals';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +19,7 @@ const Tabs = () => {
     >
       <Tab.Screen
         name={t('common:tabs.goals')}
-        component={GoalsScreen}
+        component={GoalsStack}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Icon name="checkmark-circle" size={size} color={color} />

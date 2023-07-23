@@ -47,6 +47,10 @@ export type Goal = {
   title: string | undefined;
   description: string | undefined;
 };
+type onPress = {
+  onPress: (id: number) => void;
+};
+export type GoalProps = Goal & onPress;
 type Goals = { goals: Goal[]; lastId: number; dialogOpen: dialogOpen };
 type GoalPayload = {
   payload: Partial<Goal>;

@@ -5,10 +5,12 @@ import { selectGoals } from 'GoalMap/src/store/goals';
 import { useSelector } from 'react-redux';
 import { GoalCard, GoalDialog } from 'GoalMap/src/components';
 
-const GoalsScreen = () => {
+const GoalsScreen = ({ navigation }) => {
   const { Layout } = useTheme();
   const goals = useSelector(selectGoals);
-
+  const handleNavigation = (id: number) => {
+    navigation.navigate('GoalScreen', { id });
+  };
   return (
     <SafeAreaView style={Layout.fill}>
       <FlatList
@@ -18,6 +20,7 @@ const GoalsScreen = () => {
             id={item.id}
             description={item.description}
             title={item.title}
+            onPress={handleNavigation}
           />
         )}
         keyExtractor={item => `${item.id}`}
