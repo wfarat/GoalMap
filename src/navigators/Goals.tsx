@@ -2,8 +2,9 @@ import React from 'react';
 import GoalScreen from '../screens/Goals/Goal/GoalScreen';
 import GoalsScreen from '../screens/Goals/GoalsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import { GoalsStackParamList } from 'GoalMap/@types/navigation';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<GoalsStackParamList>();
 
 // @refresh reset
 const GoalsStack = () => {
@@ -13,11 +14,7 @@ const GoalsStack = () => {
       initialRouteName="GoalsScreen"
     >
       <Stack.Screen name="GoalsScreen" component={GoalsScreen} />
-      <Stack.Screen
-        name="GoalScreen"
-        component={GoalScreen}
-        initialParams={{ id: undefined }}
-      />
+      <Stack.Screen name="GoalScreen" component={GoalScreen} />
     </Stack.Navigator>
   );
 };

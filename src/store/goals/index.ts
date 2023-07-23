@@ -40,7 +40,13 @@ export const selectGoals = (state: { goals: Goals }) => state.goals.goals;
 export const selectDialog = (state: { goals: Goals }) => state.goals.dialogOpen;
 export default slice.reducer;
 
-type Step = { id: number; substeps: Step[]; name: string; completed: boolean };
+export type Step = {
+  id: number;
+  steps: Step[];
+  name: string;
+  parentId: number;
+  completed: boolean;
+};
 export type Goal = {
   id: number;
   steps: Step[];
