@@ -37,8 +37,52 @@ const slice = createSlice({
 
 export const { addGoal, deleteGoal, editGoal, toggleDialog } = slice.actions;
 export const selectGoals = (state: { goals: Goals }) => state.goals.goals;
+export const selectStepsById = (
+  state: { goals: Goals },
+  id: number,
+  parentId: number | undefined,
+) => {
+  if (!parentId) {
+    const result = state.goals.goals.find(goal => goal.id === id);
+    if (result) {
+      return result.steps;
+    }
+  } else {
+    const parent = findParent(state.goals.goals, parentId, undefined);
+    if (parent) {
+      const result = parent.steps.find(step => step.id === id);
+      if (result) {
+        return result.steps;
+      }
+    }
+  }
+};
+
+const findParent: findParentFunction = (
+  target,
+  parentId,
+  result = undefined,
+) => {
+  if (!target) {
+    return;
+  }
+  for (const el of target) {
+    if (parentId === el.id) {
+      result = el;
+    } else {
+      result = findParent(el.steps, parentId, result);
+    }
+    return result;
+  }
+};
 export const selectDialog = (state: { goals: Goals }) => state.goals.dialogOpen;
 export default slice.reducer;
+
+type findParentFunction = (
+  target: Step[] | Goal[],
+  parentId: number,
+  result: Step | Goal | undefined,
+) => Step | Goal | undefined;
 
 export type Step = {
   id: number;
@@ -57,7 +101,7 @@ type onPress = {
   onPress: (id: number) => void;
 };
 export type GoalProps = Goal & onPress;
-type Goals = { goals: Goal[]; lastId: number; dialogOpen: dialogOpen };
+export type Goals = { goals: Goal[]; lastId: number; dialogOpen: dialogOpen };
 type GoalPayload = {
   payload: Partial<Goal>;
 };

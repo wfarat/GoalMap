@@ -5,13 +5,12 @@ import { selectGoals } from 'GoalMap/src/store/goals';
 import { useSelector } from 'react-redux';
 import { GoalCard, GoalDialog } from 'GoalMap/src/components';
 import { GoalsScreenProps } from 'GoalMap/@types/navigation';
-import type { Step } from 'GoalMap/src/store/goals';
 
 const GoalsScreen = ({ navigation }: GoalsScreenProps) => {
   const { Layout } = useTheme();
   const goals = useSelector(selectGoals);
-  const handleNavigation = (stepsArray: Step[]) => {
-    navigation.navigate('GoalScreen', { steps: stepsArray });
+  const handleNavigation = (id: number) => {
+    navigation.navigate('GoalScreen', { id, parentId: undefined });
   };
   return (
     <SafeAreaView style={Layout.fill}>
@@ -22,7 +21,7 @@ const GoalsScreen = ({ navigation }: GoalsScreenProps) => {
             id={item.id}
             description={item.description}
             title={item.title}
-            onPress={() => handleNavigation(item.steps)}
+            onPress={handleNavigation}
           />
         )}
         keyExtractor={item => `${item.id}`}

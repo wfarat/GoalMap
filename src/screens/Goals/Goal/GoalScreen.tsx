@@ -1,15 +1,19 @@
 import React from 'react';
 import { SafeAreaView, FlatList } from 'react-native';
 import { useTheme } from '../../../hooks';
+import { selectStepsById } from 'GoalMap/src/store/goals';
+import { useSelector } from 'react-redux';
 import { GoalCard, GoalDialog } from 'GoalMap/src/components';
 import { GoalScreenProps } from 'GoalMap/@types/navigation';
-import type { Step } from 'GoalMap/src/store/goals';
-
+import type { Goals } from 'GoalMap/src/store/goals';
 const GoalScreen = ({ navigation, route }: GoalScreenProps) => {
   const { Layout } = useTheme();
-  const { steps } = route.params;
-  const handleNavigation = (stepsArray: Step[]) => {
-    navigation.navigate('GoalScreen', { steps: stepsArray });
+  const { id, parentId } = route.params;
+  const steps = useSelector((state: { goals: Goals }) =>
+    selectStepsById(state, id, parentId),
+  );
+  const handleNavigation = (goalId: number, parent: number) => {
+    navigation.navigate('GoalScreen', { id: goalId, parentId: parent });
   };
   return (
     <SafeAreaView style={Layout.fill}>
@@ -19,7 +23,7 @@ const GoalScreen = ({ navigation, route }: GoalScreenProps) => {
           <GoalCard
             id={item.id}
             title={item.name}
-            onPress={() => handleNavigation(item.steps)}
+            onPress={() => handleNavigation(item.id, item.parentId)}
           />
         )}
         keyExtractor={item => `${item.id}`}

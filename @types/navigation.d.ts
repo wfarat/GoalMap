@@ -1,6 +1,5 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { Step } from 'GoalMap/src/store/goals';
 
 export type MainParamsList = {
   Home: undefined;
@@ -15,7 +14,7 @@ export type ApplicationScreenProps =
   StackScreenProps<ApplicationStackParamList>;
 
 export type GoalsStackParamList = {
-  GoalScreen: { steps: Step[] };
+  GoalScreen: { id: number; parentId: number | undefined };
   GoalsScreen: undefined;
 };
 
