@@ -32,10 +32,30 @@ const slice = createSlice({
         state.dialogOpen.id = undefined;
       }
     },
+    addStep: (state, { payload: { name, parentId } }: StepPayload) => {
+      if (parentId) {
+        let parent;
+        parent = state.goals.find(goal => goal.id === parentId);
+        if (!parent) {
+          parent = findParent(state.goals, parentId, undefined);
+        }
+        if (parent) {
+          state.lastId++;
+          parent.steps.push({
+            id: state.lastId,
+            steps: [],
+            name,
+            parentId,
+            completed: false,
+          });
+        }
+      }
+    },
   },
 });
 
-export const { addGoal, deleteGoal, editGoal, toggleDialog } = slice.actions;
+export const { addGoal, deleteGoal, editGoal, toggleDialog, addStep } =
+  slice.actions;
 export const selectGoals = (state: { goals: Goals }) => state.goals.goals;
 export const selectStepsById = (
   state: { goals: Goals },
@@ -87,7 +107,7 @@ type findParentFunction = (
 export type Step = {
   id: number;
   steps: Step[];
-  name: string;
+  name: string | undefined;
   parentId: number;
   completed: boolean;
 };
@@ -101,8 +121,12 @@ type onPress = {
   onPress: (id: number) => void;
 };
 export type GoalProps = Goal & onPress;
+export type StepProps = Step & onPress;
 export type Goals = { goals: Goal[]; lastId: number; dialogOpen: dialogOpen };
 type GoalPayload = {
   payload: Partial<Goal>;
+};
+type StepPayload = {
+  payload: Partial<Step>;
 };
 type dialogOpen = { open: boolean; id: number | undefined };

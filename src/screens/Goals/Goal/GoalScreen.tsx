@@ -3,7 +3,7 @@ import { SafeAreaView, FlatList } from 'react-native';
 import { useTheme } from '../../../hooks';
 import { selectStepsById } from 'GoalMap/src/store/goals';
 import { useSelector } from 'react-redux';
-import { GoalCard, GoalDialog } from 'GoalMap/src/components';
+import { GoalCard, StepDialog } from 'GoalMap/src/components';
 import { GoalScreenProps } from 'GoalMap/@types/navigation';
 import type { Goals } from 'GoalMap/src/store/goals';
 const GoalScreen = ({ navigation, route }: GoalScreenProps) => {
@@ -28,7 +28,7 @@ const GoalScreen = ({ navigation, route }: GoalScreenProps) => {
         )}
         keyExtractor={item => `${item.id}`}
       />
-      <GoalDialog />
+      <StepDialog parentId={id} />
     </SafeAreaView>
   );
 };
